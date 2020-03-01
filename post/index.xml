@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Welcome to itracy</title>
+    <link>https://itracy.top/post/</link>
+    <description>Recent content in Posts on Welcome to itracy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://itracy.top/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>New Age, New Boy</title>
+      <link>https://itracy.top/post/start/</link>
+      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://itracy.top/post/start/</guid>
+      <description>相信新的时代已经到来，坚持写博客，记录生活中有意思的东西，love and share!</description>
+    </item>
+    
+  </channel>
+</rss>
