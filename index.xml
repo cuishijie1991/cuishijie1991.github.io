@@ -6,10 +6,28 @@
     <description>Recent content on Welcome to itracy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 07 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://itracy.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>算法——字符串相加</title>
+      <link>https://itracy.top/post/%E7%AE%97%E6%B3%95addstring/</link>
+      <pubDate>Sat, 07 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://itracy.top/post/%E7%AE%97%E6%B3%95addstring/</guid>
+      <description>题目 给定两个字符串形式的非负整数 num1 和num2 ，计算它们的和。 注意： num1 和num2 的长度都小于 5100. num1 和num2 都只包含数字 0-9. num1 和num2 都不包含任</description>
+    </item>
+    
+    <item>
+      <title>算法——最大二叉树宽度</title>
+      <link>https://itracy.top/post/%E7%AE%97%E6%B3%95widthofbinarytree/</link>
+      <pubDate>Sat, 07 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://itracy.top/post/%E7%AE%97%E6%B3%95widthofbinarytree/</guid>
+      <description>题目 给定一个二叉树，编写一个函数来获取这个树的最大宽度。树的宽度是所有层中的最大宽度。这个二叉树与满二叉树（full binary tree）结构相同，但</description>
+    </item>
     
     <item>
       <title>New Age, New Boy</title>
