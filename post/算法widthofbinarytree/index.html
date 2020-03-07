@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="New Age, New Boy" />
-    <meta property="og:title" content="New Age, New Boy" />
-    <meta property="twitter:title" content="New Age, New Boy" />
+    <meta name="title" content="算法——最大二叉树宽度" />
+    <meta property="og:title" content="算法——最大二叉树宽度" />
+    <meta property="twitter:title" content="算法——最大二叉树宽度" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="崔世杰, Tracy, itracy, , 崔世杰的网络日志, 崔世杰的博客, Tracy&#39;s Blog, 博客, 个人网站, 互联网, Android, Java">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>New Age, New Boy-崔世杰的博客 | Tracy&#39;s Blog</title>
+    <title>算法——最大二叉树宽度-崔世杰的博客 | Tracy&#39;s Blog</title>
 
-    <link rel="canonical" href="/post/start/">
+    <link rel="canonical" href="/post/%E7%AE%97%E6%B3%95widthofbinarytree/">
 
     <link rel="stylesheet" href="/css/iDisqus.min.css"/>
 	
@@ -159,7 +159,7 @@
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://img.itracy.top/post-bg-2015.jpg')
+        background-image: url('/img/home-bg-aurora.jpeg')
     }
 </style>
 <header class="intro-header">
@@ -170,15 +170,15 @@
                     <div class="tags">
                         
                     </div>
-                    <h1>New Age, New Boy</h1>
-                    <h2 class="subheading">开始写blog，记录生活点滴，做一些有意义and有意思的事</h2>
+                    <h1>算法——最大二叉树宽度</h1>
+                    <h2 class="subheading">widthOfBinaryTree</h2>
                     <span class="meta">
                         Posted by 
                         
-                            tracy
+                            Tracy
                          
                         on 
-                        Sunday, March 1, 2020
+                        Saturday, March 7, 2020
                         
                         
                         
@@ -208,7 +208,98 @@
                 </header>
                 <nav id="TableOfContents"></nav>
                 
-                <p>相信新的时代已经到来，坚持写博客，记录生活中有意思的东西，love and share!</p>
+                <h1 id="题目">题目</h1>
+<p>给定一个二叉树，编写一个函数来获取这个树的最大宽度。树的宽度是所有层中的最大宽度。这个二叉树与满二叉树（full binary tree）结构相同，但一些节点为空。</p>
+<p>每一层的宽度被定义为两个端点（该层最左和最右的非空节点，两端点间的null节点也计入长度）之间的长度。</p>
+<p>示例 1:</p>
+<p>输入:</p>
+<pre><code>       1
+     /   \
+    3     2
+   / \     \  
+  5   3     9 
+</code></pre>
+<p>输出: 4
+解释: 最大值出现在树的第 3 层，宽度为 4 (5,3,null,9)。
+示例 2:</p>
+<p>输入:</p>
+<pre><code>      1
+     /  
+    3    
+   / \       
+  5   3     
+</code></pre>
+<p>输出: 2
+解释: 最大值出现在树的第 3 层，宽度为 2 (5,3)。
+示例 3:</p>
+<p>输入:</p>
+<pre><code>      1
+     / \
+    3   2 
+   /        
+  5      
+</code></pre>
+<p>输出: 2
+解释: 最大值出现在树的第 2 层，宽度为 2 (3,2)。
+示例 4:</p>
+<p>输入:</p>
+<pre><code>      1
+     / \
+    3   2
+   /     \  
+  5       9 
+ /         \
+6           7
+</code></pre>
+<p>输出: 8
+解释: 最大值出现在树的第 4 层，宽度为 8 (6,null,null,null,null,null,null,7)。
+注意: 答案在32位有符号整数的表示范围内。</p>
+<p><a href="https://leetcode-cn.com/problems/maximum-width-of-binary-tree">leetcode真题</a>（medium）</p>
+<p>#解题思路和难点</p>
+<ul>
+<li>求二叉树宽度，考虑BFS或DFS</li>
+<li>宽度是最两边节点的差，中间空节点也算，所以应该考虑记录数组下标运算。如果根节点中root节点是n，则左子节点是2n，右子节点是2n+1</li>
+<li>分层计算下一层的最大宽度，使用队列</li>
+<li>队列offer、peek、poll比较难记，可以用add、remove方法</li>
+</ul>
+<p>#一种解法</p>
+<pre><code>    class Solution {
+    public int widthOfBinaryTree(TreeNode root) {
+        if (root == null) return 0;
+        //队列保存节点
+        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
+        queue.add(root);
+        //队列链表保存最大宽度
+        LinkedList&lt;Integer&gt; list = new LinkedList&lt;&gt;();
+        list.add(1);
+        int maxWidth = 1;
+        //开启while循环逐层遍历
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            //while中每次遍历一层
+            for (int i = 0; i &lt; size; i++) {
+                //取出头部node和对应index
+                TreeNode node = queue.remove();
+                int index = list.remove();
+                if (node.left != null) {
+                    queue.add(node.left);
+                    list.add(index * 2);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                    list.add(index * 2 + 1);
+                }
+            }
+            //计算最大宽度，当前子层的最大宽度
+            if(list.size()&gt;0) {
+            maxWidth = Math.max(maxWidth, list.get(list.size() - 1) - list.get(0) + 1);
+            }
+        }
+        return maxWidth;
+    }
+}
+</code></pre>
+<p>}</p>
 
 
                 
@@ -256,9 +347,14 @@
                 <hr>
                 <ul class="pager">
                     
+                    <li class="previous">
+                        <a href="/post/start/" data-toggle="tooltip" data-placement="top" title="New Age, New Boy">&larr;
+                            Previous Post</a>
+                    </li>
+                    
                     
                     <li class="next">
-                        <a href="/post/%E7%AE%97%E6%B3%95widthofbinarytree/" data-toggle="tooltip" data-placement="top" title="算法——最大二叉树宽度">Next
+                        <a href="/post/%E7%AE%97%E6%B3%95addstring/" data-toggle="tooltip" data-placement="top" title="算法——字符串相加">Next
                             Post &rarr;</a>
                     </li>
                     

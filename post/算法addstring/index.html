@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="New Age, New Boy" />
-    <meta property="og:title" content="New Age, New Boy" />
-    <meta property="twitter:title" content="New Age, New Boy" />
+    <meta name="title" content="算法——字符串相加" />
+    <meta property="og:title" content="算法——字符串相加" />
+    <meta property="twitter:title" content="算法——字符串相加" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="崔世杰, Tracy, itracy, , 崔世杰的网络日志, 崔世杰的博客, Tracy&#39;s Blog, 博客, 个人网站, 互联网, Android, Java">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>New Age, New Boy-崔世杰的博客 | Tracy&#39;s Blog</title>
+    <title>算法——字符串相加-崔世杰的博客 | Tracy&#39;s Blog</title>
 
-    <link rel="canonical" href="/post/start/">
+    <link rel="canonical" href="/post/%E7%AE%97%E6%B3%95addstring/">
 
     <link rel="stylesheet" href="/css/iDisqus.min.css"/>
 	
@@ -159,7 +159,7 @@
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://img.itracy.top/post-bg-2015.jpg')
+        background-image: url('/img/home-bg-aurora.jpeg')
     }
 </style>
 <header class="intro-header">
@@ -170,15 +170,15 @@
                     <div class="tags">
                         
                     </div>
-                    <h1>New Age, New Boy</h1>
-                    <h2 class="subheading">开始写blog，记录生活点滴，做一些有意义and有意思的事</h2>
+                    <h1>算法——字符串相加</h1>
+                    <h2 class="subheading">addString</h2>
                     <span class="meta">
                         Posted by 
                         
-                            tracy
+                            Tracy
                          
                         on 
-                        Sunday, March 1, 2020
+                        Saturday, March 7, 2020
                         
                         
                         
@@ -208,7 +208,44 @@
                 </header>
                 <nav id="TableOfContents"></nav>
                 
-                <p>相信新的时代已经到来，坚持写博客，记录生活中有意思的东西，love and share!</p>
+                <h1 id="题目">题目</h1>
+<p>给定两个字符串形式的非负整数 num1 和num2 ，计算它们的和。</p>
+<p>注意：</p>
+<p>num1 和num2 的长度都小于 5100.
+num1 和num2 都只包含数字 0-9.
+num1 和num2 都不包含任何前导零。
+你不能使用任何內建 BigInteger 库， 也不能直接将输入的字符串转换为整数形式。
+<a href="https://leetcode-cn.com/problems/add-strings/">leetcode真题</a>（easy）</p>
+<p>#解题思路和难点</p>
+<ul>
+<li>字符串相加，低位相加，有进位问题</li>
+<li>char转换成数字</li>
+<li>结果缓存形式，用char[]还是StringBuilder。建议使用stringBuilder,做结果反转和转string都很方便。</li>
+</ul>
+<p>#一种解法</p>
+<pre><code> class Solution {
+    public String addStrings(String num1, String num2) {
+        StringBuilder sb = new StringBuilder();
+        int len1 = num1.length();
+        int len2 = num2.length();
+        int resLen = Math.max(len1, len2);
+        int over = 0;
+        for (int i = 0; i &lt; resLen; i++) {
+            int n1 = i &lt; len1 ? num1.charAt(len1 - i - 1) - '0' : 0;
+            int n2 = i &lt; len2 ? num2.charAt(len2 - i - 1) - '0' : 0;
+            int total = n1 + n2 + over;
+            int res = (total % 10);
+            sb.append(res);
+            over = total / 10;
+        }
+        //如果有进位，退出循环后需要进位
+        if (over==1){
+            sb.append(over);
+        }
+        //用stringBuilder的翻转字符串
+        return sb.reverse().toString();
+    }
+}</code></pre>
 
 
                 
@@ -256,11 +293,11 @@
                 <hr>
                 <ul class="pager">
                     
-                    
-                    <li class="next">
-                        <a href="/post/%E7%AE%97%E6%B3%95widthofbinarytree/" data-toggle="tooltip" data-placement="top" title="算法——最大二叉树宽度">Next
-                            Post &rarr;</a>
+                    <li class="previous">
+                        <a href="/post/%E7%AE%97%E6%B3%95widthofbinarytree/" data-toggle="tooltip" data-placement="top" title="算法——最大二叉树宽度">&larr;
+                            Previous Post</a>
                     </li>
+                    
                     
                 </ul>
 
